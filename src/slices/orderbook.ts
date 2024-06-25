@@ -93,7 +93,7 @@ export const orderbookSlice = createSlice({
   reducers: {
     addBids: (state, {payload}) => {
       const updatedBids: number[][] = addTotalSums(
-        applyDeltas(current(state).bids, payload)
+        applyDeltas(current(state).bids, payload).sort((a, b) => b[0] - a[0])
       ).slice(0, ORDERBOOK_LEVELS);
       state.maxTotalBids = getMaxTotalSum(updatedBids);
       state.bids = addDepths(updatedBids, current(state).maxTotalBids);
@@ -101,8 +101,8 @@ export const orderbookSlice = createSlice({
 
     addAsks: (state, {payload}) => {
       const updatedAsks: number[][] = addTotalSums(
-        applyDeltas(current(state).asks, payload)
-      ).slice(0, ORDERBOOK_LEVELS);
+        applyDeltas(current(state).asks, payload).sort((a, b) => a[0] - b[0])
+      ).reverse().slice(0, ORDERBOOK_LEVELS);
       state.maxTotalAsks = getMaxTotalSum(updatedAsks);
       state.asks = addDepths(updatedAsks, current(state).maxTotalAsks);
     },
@@ -110,6 +110,7 @@ export const orderbookSlice = createSlice({
     addExistingState: (state, {payload}) => {
       const bids: number[][] = addTotalSums(payload.bids).slice(0, ORDERBOOK_LEVELS);
       const asks: number[][] = addTotalSums(payload.asks).slice(0, ORDERBOOK_LEVELS).reverse();
+      console.log(bids, asks)
 
       state.market = payload['market_id'];
        state.maxTotalBids = getMaxTotalSum(bids);
