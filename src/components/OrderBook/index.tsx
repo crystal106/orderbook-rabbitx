@@ -28,7 +28,6 @@ function OrderBook() {
   const { centrifuge, subscription } = useCentrifuge(WSS_ORDER_URL, CHANNEL);
 
   useEffect(() => {
-    console.log(centrifuge);
     if (centrifuge && subscription) {
       centrifuge.on("connected", () => {
         console.log("Websocket connected");
