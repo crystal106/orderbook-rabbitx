@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Centrifuge, Subscription } from "centrifuge";
 
 export const useCentrifuge = (url: string, channel: string) => {
-  const centrifugeRef = useRef<Centrifuge | null>(null);
-  const subscriptionRef = useRef<Subscription | null>(null);
+  const [centrifuge, setCentrifuge] = useState<Centrifuge | null>(null);
+  const [subscription, setSubscription] = useState<Subscription | null>(null);
 
   useEffect(() => {
     const token = process.env.REACT_APP_CENTRIFUGE_TOKEN;
@@ -13,14 +13,14 @@ export const useCentrifuge = (url: string, channel: string) => {
     }
 
     const centrifuge = new Centrifuge(url, { token });
-    centrifugeRef.current = centrifuge;
+    setCentrifuge(centrifuge);
 
     const subscription = centrifuge.newSubscription(channel);
-    subscriptionRef.current = subscription;
+    setSubscription(subscription);
   }, [url, channel]);
 
   return {
-    centrifuge: centrifugeRef.current,
-    subscription: subscriptionRef.current,
+    centrifuge,
+    subscription,
   };
 };
