@@ -110,7 +110,6 @@ export const orderbookSlice = createSlice({
     addExistingState: (state, {payload}) => {
       const bids: number[][] = addTotalSums(payload.bids).slice(0, ORDERBOOK_LEVELS);
       const asks: number[][] = addTotalSums(payload.asks).slice(0, ORDERBOOK_LEVELS).reverse();
-      console.log(bids, asks)
 
       state.market = payload['market_id'];
        state.maxTotalBids = getMaxTotalSum(bids);
