@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { PublicationContext, SubscribedContext } from "centrifuge";
-import { CHANNEL, DISPLAY_LEVELS, WSS_ORDER_URL } from "../../constants";
+import DepthVisualizer from "../DepthVisualizer";
+import PriceLevelRow from "./PriceLevelRow";
+import TitleRow from "./TitleRow";
+import Loader from "../Loader";
+import Spread from "../Spread";
 import { useCentrifuge } from "../../hooks/centrifuge";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import {
@@ -11,14 +15,10 @@ import {
   selectBids,
 } from "../../slices/orderbook";
 import { conversion, formatNumber, formatPrice } from "../../helper";
+import { CHANNEL, DISPLAY_LEVELS, WSS_ORDER_URL } from "../../constants";
 import { OrderType } from "../../types";
-import { PriceLevelRowContainer } from "./PriceLevelRow/styles";
-import DepthVisualizer from "../DepthVisualizer";
-import PriceLevelRow from "./PriceLevelRow";
 import { Container, TableContainer, TitleSpan } from "./styles";
-import TitleRow from "./TitleRow";
-import Loader from "../Loader";
-import Spread from "../Spread";
+import { PriceLevelRowContainer } from "./PriceLevelRow/styles";
 
 function OrderBook() {
   const bids: number[][] = useAppSelector(selectBids);
