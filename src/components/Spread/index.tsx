@@ -29,7 +29,7 @@ function Spread({ bids, asks }: SpreadProps) {
         {formatPrice((getLowestAsk(asks) + getHighestBid(bids)) / 2)}
       </span>
       <span className="spread">
-        {getSpreadPercentage(getSpreadAmount(bids, asks), getHighestBid(bids))}%
+        {getSpreadPercentage(getSpreadAmount(bids, asks), getHighestBid(bids))}
       </span>
     </Container>
   );

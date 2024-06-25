@@ -112,6 +112,10 @@ function OrderBook() {
             total={total}
             amount={amount}
             price={price}
+            marked={
+              (orderType === OrderType.BIDS && idx === 0) ||
+              (orderType === OrderType.ASKS && idx === DISPLAY_LEVELS - 1)
+            }
           />
         </PriceLevelRowContainer>
       );

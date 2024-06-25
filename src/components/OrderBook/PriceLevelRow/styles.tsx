@@ -28,11 +28,21 @@ export const Container = styled.div`
   .bid-price {
     color: #19c193;
     text-align: start;
+    &.marked {
+      background-color: #113a42;
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
   }
 
   .ask-price {
     color: #d73d54;
     text-align: start;
+    &.marked {
+      background-color: #472233;
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
   }
 `;
 

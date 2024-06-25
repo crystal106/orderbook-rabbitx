@@ -7,10 +7,11 @@ interface PriceLevelRowProps {
   price: string;
   amount: string;
   total: string;
+  marked: boolean;
 }
 
 function PriceLevelRow(props: PriceLevelRowProps) {
-  const { orderType, price, amount, total } = props;
+  const { orderType, price, amount, total, marked } = props;
 
   return (
     <Container>
@@ -18,6 +19,7 @@ function PriceLevelRow(props: PriceLevelRowProps) {
         className={classNames({
           "bid-price": orderType === OrderType.BIDS,
           "ask-price": orderType === OrderType.ASKS,
+          marked,
         })}
       >
         {price}
