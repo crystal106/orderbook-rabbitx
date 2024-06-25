@@ -29,6 +29,7 @@ function OrderBook() {
 
   useEffect(() => {
     if (centrifuge && subscription) {
+      console.log(centrifuge);
       centrifuge.on("connected", () => {
         console.log("Websocket connected");
         if (subscription) {

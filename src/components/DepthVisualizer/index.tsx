@@ -18,10 +18,10 @@ function DepthVisualizer(props: DepthVisualizerProps) {
             : DepthVisualizerColors.ASKS
         }`,
         height: "1.250em",
-        width: `${depth / 3}%`,
+        width: `${depth / 4}%`,
         position: "relative",
         top: 21,
-        left: "67%",
+        left: "70%",
         marginTop: -24,
         zIndex: 1,
       }}
